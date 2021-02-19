@@ -1,5 +1,4 @@
 const net = require('net')
-const Socket = net.Socket
 
 const fport = {}
 
@@ -18,20 +17,20 @@ fport.port = function() {
 
 fport.taken = function(port, host = '127.0.0.1') {
   return new Promise(resolve => {
-    var socket = new Socket()
+    var socket = new net.Socket()
     socket.setTimeout(400)
 
-    socket.on('connect', function () {
+    socket.on('connect', () => {
       socket.destroy()
       resolve(true)
     })
 
-    socket.on('timeout', function () {
+    socket.on('timeout', () => {
       socket.destroy()
       resolve(false)
     })
 
-    socket.on('error', function (e) {
+    socket.on('error', () => {
       resolve(false)
     })
 
