@@ -1,6 +1,6 @@
 # Fport
 
-Function that finds an open port on your system.
+NodeJS network tools.
 
 ### Install
 
@@ -12,8 +12,15 @@ npm i fport`
 
 ```js
 const fport = require('fport')
-const port = await fport()
-console.log(port)
+
+// Find an open network port
+const port = await fport.port()
+
+// Check if port is taken, default host is localhost
+const taken = await fport.taken(5000)
+
+// With host
+const taken = await fport.taken(5000, 'http://example.com')
 ```
 
 MIT Licensed. Enjoy!
