@@ -1,6 +1,6 @@
 {
   "name": "fport",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "NodeJS network tools",
   "main": "index.js",
   "scripts": {
