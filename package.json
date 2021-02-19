@@ -1,7 +1,7 @@
 {
   "name": "fport",
   "version": "0.2.1",
-  "description": "Find an open port on your system",
+  "description": "NodeJS network tools",
   "main": "index.js",
   "scripts": {
     "test": "jest --watch"
