@@ -1,18 +1,18 @@
-# Open Port
+# Fport
 
 Function that finds an open port on your system.
 
 ### Install
 
 ```sh
-npm i open-port`
+npm i fport`
 ```
 
 ### Usage
 
 ```js
-const openPort = require('open-port')
-const port = await openPort()
+const fport = require('fport')
+const port = await fport()
 console.log(port)
 ```
 

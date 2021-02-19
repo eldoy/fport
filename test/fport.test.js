@@ -1,6 +1,6 @@
-const openPort = require('../index.js')
+const fport = require('../index.js')
 
 it('should find an open port', async () => {
-  const port = await openPort()
+  const port = await fport()
   expect(port).toBeGreaterThan(1024)
 })
