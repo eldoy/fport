@@ -13,14 +13,14 @@ npm i fport`
 ```js
 const fport = require('fport')
 
-// Find an open network port
+// Get an open network port
 const port = await fport.port()
 
 // Check if port is taken, default host is localhost
 const taken = await fport.taken(5000)
 
 // With host
-const taken = await fport.taken(5000, 'http://example.com')
+const taken = await fport.taken(5000, 'example.com')
 ```
 
 MIT Licensed. Enjoy!
