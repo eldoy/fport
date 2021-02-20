@@ -5,7 +5,7 @@ NodeJS network tools.
 ### Install
 
 ```sh
-npm i fport`
+npm i fport
 ```
 
 ### Usage
