@@ -9,3 +9,8 @@ it('should check if port is taken', async () => {
   let result = await fport.taken(27674)
   expect(result).toEqual(false)
 })
+
+it('should kill port', async () => {
+  let result = await fport.kill(23654)
+  expect(result).toEqual('')
+})

@@ -21,6 +21,12 @@ const taken = await fport.taken(5000)
 
 // With host
 const taken = await fport.taken(5000, 'example.com')
+
+// Kill an open TCP port
+await fport.kill(5000)
+
+// Kill a UDP port
+await fport.kill(5000, 'udp')
 ```
 
 MIT Licensed. Enjoy!
