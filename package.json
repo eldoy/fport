@@ -3,6 +3,9 @@
   "version": "0.3.0",
   "description": "NodeJS network tools",
   "main": "index.js",
+  "bin": {
+    "fport": "bin/fport.js"
+  },
   "scripts": {
     "test": "jest --watch"
   },
