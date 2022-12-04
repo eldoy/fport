@@ -3,7 +3,8 @@ const { exec } = require('child_process')
 
 const fport = {}
 
-fport.port = function() {
+// Find first available port
+fport.port = function () {
   return new Promise((resolve, reject) => {
     const server = net.createServer()
     server.on('error', reject)
@@ -16,10 +17,11 @@ fport.port = function() {
   })
 }
 
-fport.taken = function(port, host = '127.0.0.1') {
-  return new Promise(resolve => {
+// Check if port is taken
+fport.taken = function ({ port, host = '127.0.0.1', timeout = 400 }) {
+  return new Promise((resolve) => {
     var socket = new net.Socket()
-    socket.setTimeout(400)
+    socket.setTimeout(timeout)
 
     socket.on('connect', () => {
       socket.destroy()
@@ -39,7 +41,28 @@ fport.taken = function(port, host = '127.0.0.1') {
   })
 }
 
-fport.kill = function(port, method = 'tcp') {
+// Wait for port to become available
+fport.wait = async function ({
+  port,
+  host = '127.0.0.1',
+  timeout = 100,
+  tries = 0,
+  callback
+}) {
+  let count = 0
+  while (!(await fport.taken({ port, host }))) {
+    if (!tries) break
+    count++
+    if (typeof callback == 'function') {
+      callback({ count })
+    }
+    await new Promise((r) => setTimeout(r, timeout))
+    if (count >= tries) break
+  }
+}
+
+// Kill process on port
+fport.kill = function ({ port, method = 'tcp' }) {
   method = method.toLowerCase()
   const command = [
     `lsof -i ${method == 'udp' ? 'udp' : 'tcp'}:${port}`,
@@ -48,7 +71,7 @@ fport.kill = function(port, method = 'tcp') {
     `xargs kill -9`
   ].join(' | ')
 
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve, reject) {
     exec(command, (error, stdout, stderr) => {
       if (error) {
         console.log(`error: ${error.message}`)
