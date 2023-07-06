@@ -43,7 +43,7 @@ await fport.wait({
 await fport.kill({ port: 5000 })
 
 // Kill a UDP port
-await fport.kill({ port: 5000, method: 'tcp' })
+await fport.kill({ port: 5000, method: 'udp' })
 ```
 
 #### From the command line
