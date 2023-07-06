@@ -1,6 +1,6 @@
 # Fport
 
-NodeJS network tools.
+Find, wait, check and kill network ports on your system with NodeJS.
 
 ### Usage
 
